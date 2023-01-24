@@ -2,13 +2,10 @@ package com.example.cryptography_app
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import android.util.MutableByte
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cryptography_app.databinding.ActivityMainBinding
 import java.io.BufferedReader
