@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         setOnClickListeners()
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -59,9 +58,7 @@ class MainActivity : AppCompatActivity() {
         //AES decrypt
         if (requestCode == 112 && resultCode == RESULT_OK) {
             val encryptedText = readTextUri(data?.data)
-            if (encryptedText != null) {
-                decryptDataAES(encryptedText)
-            }
+            decryptDataAES(encryptedText)
         }
         //RSA decrypt
         if (requestCode == 113 && resultCode == RESULT_OK) {
