@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">cryptography_app</string>
+    <string name="select_your_file">Select your file!</string>
+    <string name="file">File:</string>
+    <string name="file_txt">file.txt</string>
+    <string name="create_a_key">Create a key</string>
+    <string name="load_file">Load file</string>
+    <string name="aes">AES</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="rsa">RSA</string>
+    <string name="verification">Verification</string>
+    <string name="sign">Sign</string>
+    <string name="msg_sum">msg sum</string>
+    <string name="digital_sign">Digital sign</string>
+    <string name="file_content">File content: %s</string>
+    <string name="aes_key_s">AES key: %s</string>
+    <string name="encrypted_text_s">Encrypted AES text: %s</string>
+    <string name="decrypted_text_s">Decrypted AES text: %s</string>
+    <string name="encrypted_rsa_text_s">Encrypted RSA text: %s</string>
+    <string name="decrypted_rsa_text_s">Decrypted RSA text: %s</string>
+    <string name="rsa_public_key_s">Public key: %s</string>
+    <string name="rsa_private_key_s">Private key: %s</string>
+    <string name="digestive_text_s">Sažetak: %s</string>
+    <string name="signature_text_s">Signature: %s</string>
+</resources>
