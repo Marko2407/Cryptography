@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var rsaPublicKey: PublicKey? = null
     private var rsaData: RSA? = null
     private var digitalSign: ByteArray? = null
+    private var digitalSignature: ByteArray? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,10 +66,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
         if (requestCode == 114 && resultCode == RESULT_OK) {
-            val digitalSignature = readTextUri(data?.data)
-            if (digitalSignature != null) {
-                signatureVerify(digitalSignature)
-            }
+            val digitalSignature = readTextFromUri(data?.data)
+            val signature = checkSignature(digitalSignature)
+            signatureVerify(signature)
         }
 
     }
@@ -231,13 +231,13 @@ class MainActivity : AppCompatActivity() {
             digitalSign = generateDigitalSign(text, rsaPrivateKey!!)
             msgLog(DIGITAL_SIGN + digitalSign)
             binding.txtDigitalSign.text = getString(R.string.signature_text_s, digitalSign)
-            digitalSign?.let { createFile(DIGITAL_SIGN_FILE_NAME, it) }
+            digitalSign?.let { createFile(DIGITAL_SIGN_FILE_NAME, it.toString()) }
         } else {
             msgToast(GENERATE_RSA_KEYS)
         }
     }
 
-    private fun signatureVerify(digitalSignature: ByteArray) {
+    private fun signatureVerify(digitalSignature: ByteArray?) {
         if (rsaPublicKey != null) {
             val isVerified = verifyDigitalSign(text, digitalSignature, rsaPublicKey!!)
             msgToast(VERIFICATION_IS + isVerified)
@@ -269,6 +269,14 @@ class MainActivity : AppCompatActivity() {
             return false
         }
         return true
+    }
+
+    private fun checkSignature(digitalSignature: String): ByteArray? {
+        return if (digitalSign.toString() == digitalSignature) {
+            digitalSign
+        } else {
+            digitalSignature.toByteArray()
+        }
     }
 
     private fun logData() {
@@ -312,7 +320,7 @@ class MainActivity : AppCompatActivity() {
 
         private const val FILE_PATH = "/Download/"
 
-        const val SIGN_ALGORITHM_SHA1_RSA = "SHA1withRSA"
+        const val SIGN_ALGORITHM_SHA1_RSA = "SHA256withRSA"
         const val SHA_256 = "SHA-256"
         const val RSA_TRANSFORMATION = "RSA/ECB/PKCS1Padding"
         const val AES_TRANSFORMATION = "AES/CBC/PKCS5PADDING"

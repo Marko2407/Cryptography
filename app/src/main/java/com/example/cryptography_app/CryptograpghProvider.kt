@@ -72,7 +72,7 @@ fun generateMsgDigest(txtFile: ByteArray): ByteArray {
 }
 
 fun generateDigitalSign(strToEncrypt: String, privateKey: PrivateKey): ByteArray? {
-    val message: ByteArray = strToEncrypt.toByteArray(Charsets.UTF_8)
+    val message: ByteArray = strToEncrypt.encodeToByteArray()
     val key: PrivateKey = privateKey
     val signature = Signature.getInstance(SIGN_ALGORITHM_SHA1_RSA)
         .apply {
@@ -83,7 +83,7 @@ fun generateDigitalSign(strToEncrypt: String, privateKey: PrivateKey): ByteArray
 }
 
 fun verifyDigitalSign(txtFile: String, fileSignature: ByteArray?, publicKey: PublicKey): Boolean {
-    val message: ByteArray = txtFile.toByteArray(Charsets.UTF_8)
+    val message: ByteArray = txtFile.encodeToByteArray()
     val signature: ByteArray? = fileSignature
     val key: PublicKey = publicKey
     val s = Signature.getInstance(SIGN_ALGORITHM_SHA1_RSA)
