@@ -16,7 +16,7 @@ import java.security.Signature
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
-
+//Symmetric
 fun generateAESKey(): SecretKeySpec {
     val digest: MessageDigest = MessageDigest.getInstance(SHA_256)
     val bytes = MY_SECRET_KEY.toByteArray()
@@ -40,6 +40,7 @@ fun decryptAES(encryptedString: ByteArray, secretKey: SecretKeySpec, ivValue: By
     return cipherText.decodeToString()
 }
 
+//Asymmetric
 fun generateRSAKey(): RSAKeys {
     val keyGen = KeyPairGenerator.getInstance(KeyProperties.KEY_ALGORITHM_RSA)
     keyGen.initialize(KEY_SIZE)
